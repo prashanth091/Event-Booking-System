@@ -1,0 +1,107 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+<h1>Edits</h1>
+
+<!-- Menu for adding Components -->
+<h3>Add Components</h3>
+<div class="row add-menu justify-content-center">
+  <button class="btn col-2 mx-5" value="event">Add an Event</button>
+  <button class="btn col-2 mx-5" value="category">Add a Category</button>
+  <button class="btn col-2 mx-5" value="sub-category">Add a Sub-Category</button>
+  <button class="btn col-2 mx-5" value="location">Add a Location </button>
+</div>
+<!-- Adding forms -->
+<div class="row edit-menu justify-content-center">
+  <div id="event" class="col-4 add-form my-3 hide">
+    <img class="svg close mt-2" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+    <form id="form1" action="{%url 'edit' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %} {{ form1 }}
+      <input type="submit" name="form1-submit" value="Add"></input>
+    </form>
+  </div>
+  <div id="category" class="col-4 add-form my-3 hide">
+    <img class="svg close mt-2" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+    <form id="form2" action="{%url 'edit' %}" method="post">
+      {% csrf_token %} {{ form2 }}
+      <input type="submit" name="form2-submit" value="Add"></input>
+    </form>
+  </div>
+  <div id="sub-category" class="col-4 add-form my-3 hide">
+    <img class="svg close mt-2" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+    <form id="form3" action="{%url 'edit' %}" method="post">
+      {% csrf_token %} {{ form3 }}
+      <input type="submit" name="form3-submit" value="Add"></input>
+    </form>
+  </div>
+  <div id="location" class="col-4 add-form my-3 hide">
+    <img class="svg close mt-2" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+    <form id="form4" action="{%url 'edit' %}" method="post">
+      {% csrf_token %} {{ form4 }}
+      <input type="submit" name="form4-submit" value="Add"></input>
+    </form>
+  </div>
+</div>
+<hr>
+
+<!-- Menu for Editing Components -->
+<h3>Editing Components</h3>
+<div class="row edit-menu justify-content-center">
+  <div class="event col-3 mx-5">
+    <h3>Edit an Event</h3>
+    <ul>
+      {% for event in events %}
+        <li class="my-1 p-1"><a href="{% url 'edit_event' event.id %}">{{event.title}}</a><a href="{% url 'delete_event' event.id %}" class="btn btn-sm btn-danger mx-3">Delete <img src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X"></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="sub_category col-3 mx-5">
+    <h3 >Edit a Sub-Category</h3>
+    <ul>
+      {% for sub_category in sub_categories %}
+        <li class="my-1 p-1"><a href="{% url 'edit_sub_category' sub_category.id %}">
+        {{sub_category.name}}</a><a href="{% url 'delete_sub_category' sub_category.id %}" class="btn btn-sm btn-danger mx-3">Delete <img src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X"></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="location col-3 mx-5">
+    <h3 >Edit a Location </h3>
+    <ul>
+      {% for location in locations %}
+        <li class="my-1 p-1"><a href="{% url 'edit_location' location.id %}">{{location}}</a><a href="{% url 'delete_location' location.id %}" class="btn btn-sm btn-danger mx-3">Delete <img src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X"></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+<!-- Editing forms -->
+<div class="row justify-content-center">
+
+  <div class="col-3 edit-form mx-5">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{eventForm}}
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
+  <div class="col-3 edit-form mx-5">
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{subCategoryForm}}
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  
+  <div class="col-3 edit-form mx-5">
+    <form action="" method="POST" >
+      {% csrf_token %}
+      {{locationForm}}
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>
+
+<hr>
+
+
+{%endblock %}

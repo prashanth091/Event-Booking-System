@@ -1,0 +1,39 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+<h1>Login</h1>
+
+<!-- Login Form  -->
+<div id="login" class="form">
+  <a href="{% url 'index' %}"
+    ><img
+      class="svg close mt-2"
+      src="{% static 'svgIcons/x-lg.svg' %}"
+      alt="large-X"
+  /></a>
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div>
+      <label for="username">Enter a username: </label>
+      <input id="username" type="text" name="username" placeholder="Username" />
+    </div>
+    <div>
+      <label for="password">Enter your Password: </label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        placeholder="Password"
+      />
+    </div>
+    <div>
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+  <div class="error">
+    <span> {{message}} </span>
+  </div>
+  <p
+    >If you do not have an account,
+    <a href="{% url 'register' %}">register</a> instead.</p
+  >
+</div>
+{% endblock %}

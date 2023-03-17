@@ -1,0 +1,55 @@
+{% extends "events/base.html" %}
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/payment_form.css' %}">
+{% endblock %}
+{% block body %}
+<style>
+  /* payment_form.css */
+
+#form6 {
+    font-family: Arial, sans-serif;
+    background-color: #c7e8f3;
+    padding: 20px;
+  }
+ 
+  input[type="text"], select {
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0062cc;
+  }
+  
+  </style>
+{% block content %}
+  <h1>Payment Form</h1>
+  <form id="form6" action="{%url 'payment_form'  %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form6.as_p }}
+    
+    <button type="submit">Pay Now</button>
+  </form>
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+  {% endif %}
+{% endblock %}
+{% endblock %}
+
+
+

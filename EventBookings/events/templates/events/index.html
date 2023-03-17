@@ -1,0 +1,184 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+<h1>Events</h1>
+<style>
+  .events {
+background-color: #ffffff;
+border: 2px solid #417690;
+border-radius: 10px;
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+color: #333333;
+font-size: 16px;
+padding: 10px 20px;
+text-align: center;
+transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.events:hover {
+cursor: pointer;
+transform: scale(1.05);
+box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+border-color: #ffffff;
+}
+.img-fluid rounded events{
+  width: 300px;
+  height: 200px;
+  object-fit: cover; /* This ensures that the image is scaled and cropped to fit the container */
+}
+h3 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+  font-family: Lato Black,sans-serif;
+  color: #095353;
+}
+
+  </style>
+<div class="container-fluid">
+  <!-- Event Search Filters -->
+  <div class="row">
+    <div class="col-4">
+      <h3>Search by Category:</h3>
+      <select class="form-select cat-dropdown">
+        <option value="all">All</option>
+        {% for category in categories%}
+        <option value="{{category}}">{{category}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-4">
+      <h3>Search by Sub-Category:</h3>
+      <select class="form-select subCat-dropdown">
+        <option value="all">All</option>
+        {% for sub_category in sub_categories%}
+        <option value="{{sub_category}}">{{sub_category}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-4">
+      <h3>Search by Date:</h3>
+      <div class="calendar">
+        <img class="svg" src="{% static 'svgIcons/calendar.svg' %}" />
+        <input
+          type="search"
+          class="datepicker_input form-control"
+          placeholder="Event Date"
+          required
+          aria-label="Calendar"
+        />
+      </div>
+    </div>
+  </div>
+  <hr class="my-5" />
+  <!-- Event Images -->
+  <div class="row">
+    {% for event in events %}
+    <div
+      class="col-4 all {{event.sub_category.category}} {{event.date|date:'d/m/Y'}} {{event.sub_category|cut:' ' }}"
+    >
+      <h3>{{event}}</h3>
+      <img
+        class="img-fluid rounded events"
+        src="media/{{event.image}}"
+        alt="{{event.title}}"
+      />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<hr class="my-5" />
+
+<!-- Selected Event Display Card -->
+
+<div class="sel-evn-container p-5">
+  {% for event in events %}
+  <div class="card hide {{event.title|cut:' '}}">
+    <div class="row g-0">
+      <div class="col-md-6 img-container p-1">
+        <img
+          src="media/{{event.image}}"
+          class="img-fluid rounded m-2"
+          alt="{{event.title}}"
+        />
+        <form action="{% url 'like_event' event.pk %}" method="POST">
+          {% csrf_token %}
+          <button
+            type="submit"
+            name="event_id"
+            value="{{ event.id }}"
+            class="btn like fill"
+            ><img
+              class="svg"
+              src="{% static 'svgIcons/heart.svg' %}"
+              alt="heart-empty"
+          />{{event.likes.count}}</button>
+        </form>
+        </button>
+      </div>
+      <div class="col-md-6">
+        <div class="card-body m-4">
+          <h3 class="card-title">{{event.title}} </h3>
+          <ul>
+            <li> Category: {{event.sub_category.category}} </li>
+            <li> Sub-Category: {{event.sub_category}} </li>
+            <li> Date📅: {{event.date }}</li>
+            <li> Duration⏳: {{event.get_duration}} </li>
+            <li> Seats🪑: {{event.users.count}}/{{event.location.capacity}}</li>
+            <li> Location📍: {{event.location}} </li>
+          </ul>
+          {% if request.user.subscription.subscribed %}
+            {% if event.is_paid %}
+              <form action="{% url 'book_event' event.pk %}" method="POST">
+               {% csrf_token %}
+                  <button
+                    type="submit"
+                    name="event_id"
+                    value="{{ event.id }}"
+                    class="btn book"
+                  >Book Event+</button>
+              </form>
+           {% else %}
+              <form action="{% url 'book_event' event.pk %}" method="POST">
+                {% csrf_token %}
+                  <button
+                    type="submit"
+                    name="event_id"
+                    value="{{ event.id }}"
+                    class="btn book"
+                  >Book Event?</button>
+              </form>
+           {% endif %}
+         {% else %}
+          <form action="{% url 'book_event' event.pk %}" method="POST">
+          {% csrf_token %}
+            <button
+              type="submit"
+              name="event_id"
+              value="{{ event.id }}"
+              class="btn {% if event.is_paid %}subscribe{% else %}book{% endif %}"
+      >{% if event.is_paid %}
+      {% if request.user.subscription.subscribed %}
+      Book Event!
+      {% else %}Subscribe$
+      {% endif %}
+      {% else %}
+      Book Event-
+      {% endif %}</button
+    >
+  </form>
+{% endif %}
+
+
+          
+          <p class="card-text"
+            ><small class="text-muted"
+              >Last updated {{event.updated_at}}</small
+            ></p
+          >
+        </div>
+      </div>
+    </div></div
+  >
+  {% endfor %}</div
+>
+
+{%endblock %}

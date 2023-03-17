@@ -1,0 +1,22 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+<!-- Registration Form -->
+<div id="register" class="form">
+  <a href="{% url 'index' %}"
+    ><img
+      class="svg close mt-2"
+      src="{% static 'svgIcons/x-lg.svg' %}"
+      alt="large-X"
+  /></a>
+  <form action="{% url 'register' %}" method="post">
+    {% csrf_token %} {{ form }}
+    <input type="submit" value="Submit" />
+  </form>
+  <div class="error">
+    <span> {{message}} </span>
+  </div>
+  <p
+    >If you already have an account,
+    <a href="{% url 'login' %}">login</a> instead.</p
+  >
+</div>
+{%endblock %}

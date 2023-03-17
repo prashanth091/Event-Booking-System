@@ -1,0 +1,75 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+<h1>Welcome Back, {{profile.user.username}}!</h1>
+<!-- {% if request.user.is_authenticated %}
+<p>User is logged in :)</p>
+<p>Username  {{ request.user.username }}</p>
+{% else %}
+<p>User is not logged in :(</p>
+{% endif %} -->
+
+<!-- Profile Menu -->
+<div class = "profile-menu">
+    <button class="btn btn-lg">Edit Profile Details<img class="svg" src="{% static 'svgIcons/pencil.svg' %}" alt="pencil"></button>
+</div> 
+
+<!-- Profile Details -->
+<div class="profile-details">
+  <ul>
+    <li><strong>Firstname:</strong> {{profile.user.first_name}}</li>
+    <li><strong>Lastname:</strong> {{profile.user.last_name}}</li>
+    <li><strong>Username:</strong> {{profile.user.username}}</li>
+    <li><strong>Email:</strong> {{profile.user.email}}</li>
+  </ul>
+</div>
+
+<!-- Edit Profile Details Form -->
+<div id="profile-edit" class=" hide">
+  <img class="svg close mt-2" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+  <form action="{% url 'profile' %}" method="post">
+  {% csrf_token %} {{ user_form }} {{ profile_form }}
+  <input type="submit"></input>
+  </form>
+</div>
+
+{% if user_form.errors %}
+    <div class="danger-message">
+      <img class="svg close m-5" src="{% static 'svgIcons/x-lg.svg' %}" alt="large-X">
+      <div class="p-5 m-4">{{ user_form.errors}}</div>
+      <img src="{% static 'svgIcons/exclamation-octagon.svg' %}" class="svg" alt="exclamation-octagon">
+    </div>
+{% endif %}
+
+<hr>
+<!-- Booked Events -->
+<div class="row booked-events">
+    {% for event in events %}
+    <div class="col-4 m-2">
+      <h3>{{event.title}} </h3>
+      <ul>
+        <li> Category: {{event.sub_category.category}} </li>
+        <li> Sub-Category: {{event.sub_category}} </li>
+        <li> Date📅: {{event.date }}</li>
+        <li> Duration⏳: {{event.duration}}m </li>
+        <li> Seats🪑: {{event.users.count}}/{{event.location.capacity}}</li>
+        <li> Location📍: {{event.location}} </li>
+      </ul>
+      <form action="{% url 'book_event' event.pk %}" method="POST">
+          {% csrf_token %}
+          <button
+            type="submit"
+            name="event_id"
+            value="{{ event.id }}"
+            class="btn book"
+            >Cancel Event</button
+          >
+        </form>
+      <p 
+        ><small class="text-muted"
+          >Last updated {{event.updated_at}}</small
+        ></p
+      >
+    </div>
+    {% endfor %}</div
+  >
+
+{%endblock %}

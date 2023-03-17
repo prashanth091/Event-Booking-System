@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+  background-color: #b8f1f3;
+  font-family: "Century Gothic", sans-serif;
+  margin-bottom: 75px;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0 25px 0;
+  font-family: Georgia,  serif;
+}
+
+h3 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+  font-family: Lato Black,sans-serif;
+  color: #011b1b;
+}
+
+hr {
+  background-color: #010303;
+  border: none;
+  opacity: 100%;
+}
+
+.svg {
+  width: 34px;
+  height: 24px;
+}
+
+    </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edu-Events</title>
+    <!-- Loading CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'boot/css/bootstrap.min.css' %}" />
+    <!-- my CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'events/css/style.css' %}"
+      type="text/css"
+    />
+    <!-- Vanilla Datepicker CSS -->
+    <link
+      rel="stylesheet"
+      href="{% static 'datePicker/css/datepicker.min.css' %}"
+    />
+  </head>
+  <!--Navigation Bar-->
+  <nav class="navbar sticky-top navbar-expand-md navbar-dark" id="navbar">
+    <div class="container-fluid">
+      <!--Navigation Brand-->
+      <a class="navbar-brand" href="{% url 'index' %}">
+        <img
+          src="{% static 'svgIcons/calendar.svg' %}"
+          alt="calendar"
+          class="d-inline-block align-text-top svg filter-white"
+        />
+        Edu-Events
+      </a>
+      <!-- Navigation Toggler -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!--Navbar links-->
+      <div class="collapse navbar-collapse flex" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'index' %}"
+            >Home</a
+          >
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="{% url 'profile' %}"
+            >Profile</a
+          >
+          {% if user.is_authenticated %}
+             {% if user.is_staff %}
+          <a class="nav-link active" aria-current="page" href="{% url 'edit' %}"
+            >Edit</a
+          >
+             {% endif %}
+          {% endif %}
+          {% if user.is_authenticated %}
+             {% if user.is_staff %}
+          <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}"
+            >Dashboard</a
+          >
+             {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="container d-inline-flex justify-content-end">
+        {% if user.is_authenticated %}
+        <button id="logOut" class="btn" type="button"
+          ><a href="{% url 'logout' %}">Log Out</a></button
+        >
+        {% else %}
+        <button id="signIn" class="btn" type="button"
+          ><a href="{% url 'register' %}">Signup|Login</a></button
+        >
+        {% endif %}
+        <a class="nav-link active" aria-current="page" href= "{% url 'create_event' %}"
+          >CreateEvent</a
+          >
+          <a class="nav-link active" aria-current="page" href="{% url 'payment_form' %}">subscribe</a>
+      </div>
+    </div>
+  </nav>
+  <body>
+    {% block body %} {% endblock %}
+    <!--Footer-->
+    <div class="container footer">
+      <nav class="navbar fixed-bottom navbar-expand-md footer">
+        <!--Company Copyright-->
+        <p class="col-md-4 mb-0 text-muted">© 2023 Edu-Events Booking, Inc</p>
+        <!--Footer Logo-->
+        <a
+          href="{% url 'index' %}"
+          class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"
+        >
+          <img
+            src="{% static 'svgIcons/calendar.svg' %}"
+            alt="calendar"
+            class="d-inline-block align-text-top svg"
+          />
+        </a>
+        <!--Footer Items-->
+        
+    <!-- Loading JavaScript -->
+    <!-- Bootstrap JS -->
+    <script src="{% static 'boot/js/bootstrap.min.js' %}"></script>
+    <!-- Vanilla Datepicker JS -->
+    <script src="{% static 'datePicker/js/datepicker-full.min.js' %}"></script>
+    <!-- my JS script -->
+    <script src="{% static 'events/js/script.js' %}"></script>
+  </body>
+</html>

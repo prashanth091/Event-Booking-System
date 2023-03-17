@@ -1,0 +1,327 @@
+body {
+  background-color: #ddf5fd;
+  font-family: "Century Gothic", sans-serif;
+  margin-bottom: 75px;
+}
+
+h1 {
+  text-align: center;
+  margin: 50px 0 25px 0;
+  font-family: Georgia,  serif;
+}
+
+h3 {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  text-align: center;
+  font-family: Lato Black,sans-serif;
+  color: #032423;
+}
+
+hr {
+  background-color: #5cbdb9;
+  border: none;
+  opacity: 100%;
+}
+
+.svg {
+  width: 34px;
+  height: 24px;
+}
+
+/* Changes the color of the SVG Icon/Logo */
+.filter-white {
+  filter: invert(100%) sepia(1%) saturate(7494%) hue-rotate(67deg)
+    brightness(107%) contrast(99%);
+}
+
+/* Navigation Bar Related */
+#navbar {
+  background-color: #5cbdb9;
+}
+
+#navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  color: #fffcfc;
+}
+
+/* Hide class */
+.hide {
+  display: none;
+}
+
+/* Footer Bar Related */
+.footer nav {
+  background-color: #ebf6f5;
+}
+
+/* Sign in/ Log in */
+.form {
+  position: absolute;
+  min-height: 220px;
+  min-width: 244px;
+  top: 70%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  background-color: #5cbdb9;
+  border-radius: 5px;
+  border: solid rgb(109, 102, 102);
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  color: #5cbdb9;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close:hover {
+  color: #fff;
+  }
+
+form {
+  margin: 5%;
+  padding: 5%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  flex-shrink: 1;
+  flex-direction: column;
+}
+/*mine*/
+.form label {
+font-size: 18px;
+font-weight: bold;
+color: #02302e;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"] {
+border: none;
+border-radius: 3px;
+padding: 8px;
+margin: 5px 0;
+width: 100%;
+background-color: #f2f2f2;
+color: #5a6868;
+}
+
+.form input[type="submit"] {
+background-color: #5cbdb9;
+color: #043838;
+font-size: 16px;
+font-weight: bold;
+padding: 10px 20px;
+border: none;
+border-radius: 3px;
+cursor: pointer;
+}
+
+.form input[type="submit"]:hover {
+background-color: #fff;
+color: #022423;
+border: 2px solid #0c3b3a;
+}
+
+/*mine*/
+
+.form p {
+  margin: 10px 0;
+  color: #135351;
+}
+
+.form a {
+  color: #104644;
+font-weight: bold;
+}
+.form a:hover {
+  color: #918484;
+  }
+
+.error {
+  text-align: center;
+  color: red;
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 5px;
+  border: 2px solid red;
+  border-radius: 5px;
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Edit Page Items */
+.add-menu button {
+  background-color: #5cbdb9;
+  border-radius: 5px;
+  font-size: x-large;
+  border: solid;
+}
+
+.add-form {
+  background-color: #5cbdb9;
+  border-radius: 5px;
+  border: solid rgb(109, 102, 102);
+}
+
+.edit-menu div {
+  background-color: #5cbdb9;
+  border-radius: 5px;
+}
+
+.edit-menu ul {
+  text-align: start;
+  list-style: none;
+}
+
+/* Event Images */
+.events {
+  border: 3px solid #5cbdb9;
+  padding: 2px;
+  box-shadow: 5px 10px 8px #999;
+  border-radius: 5px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.events:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 5px 15px 10px #5cbdb9;
+  border-color: #5cbdb9;
+}
+
+/* Calendar pop up */
+.calendar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  border: none;
+}
+
+/* Selected Event Card */
+
+.card {
+  background-color: #5cbdb9;
+  font-size: x-large;
+  box-shadow: 5px 10px 8px #999;
+}
+
+.img-container > img {
+  border: 3px solid #fbe3e8;
+}
+
+.like {
+  font-size: x-large;
+  background-color: #5cbdb9;
+  border: none;
+}
+
+.img-container h4:hover {
+  cursor: pointer;
+  transform: scale(1.03, 1.04);
+}
+
+.book {
+  border: solid #f8ccd6fd;
+  background-color: #fbe3e8;
+}
+
+.profile-details {
+  font-size: large;
+}
+
+.booked-events div {
+  box-shadow: 5px 10px 8px #999;
+  border-radius: 5px;
+  background-color: #5cbdb9;
+  font-size: large;
+}
+
+/* Validation Error message */
+
+.danger-message {
+  position: absolute;
+  min-height: 420px;
+  min-width: 244px;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  background-color: #5cbdb9;
+  border-radius: 5px;
+  text-align: center;
+  border: solid rgb(109, 102, 102);
+  list-style: none;
+}
+
+.danger-message div {
+  font-size: large;
+  color: red;
+  border: solid;
+  border-radius: 5px;
+  background-color: #ff9494;
+}
+
+.danger-message img {
+  text-align: center;
+}
+.payment-form {
+  width: 400px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.payment-form h1 {
+  text-align: center;
+}
+
+.payment-form label {
+  display: block;
+  margin-top: 20px;
+}
+
+.payment-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+
+.payment-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.payment-status {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
+}
+
+.hidden {
+  display: none;
+}
+

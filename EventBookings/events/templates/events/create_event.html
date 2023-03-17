@@ -1,0 +1,47 @@
+{% extends "events/base.html" %} {% load static %} {% block body %}
+
+{% block content %}
+<style>
+    /* payment_form.css */
+  
+  #form5 {
+      font-family: Arial, sans-serif;
+      background-color: #c7e8f3;
+      padding: 20px;
+    }
+    
+    input[type="text"], select {
+      font-size: 16px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+    
+    </style>
+
+<center><h2>Create a new event</h2></center>
+
+<form id="form5" action="{%url 'create_event' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form5.as_p }}
+
+    <button type="submit">Create</button>
+</form>
+{% endblock %}
+{% endblock %}
