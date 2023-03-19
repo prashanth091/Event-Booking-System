@@ -1,16 +1,22 @@
-# Event Bookings
+Educational Event Bookings web application such as workshop,conference,seminar,expo 
 
-## Technologies Utilized
-### Frontend
-- HTML
-- CSS
-- JavaScript
-- Bootstrap
+#technologies used
+Django
+python
+html
+css
+javascript
+sqlite3
 
-### Backend
-- Django
-- Python
-- SQLite
+#modules
+search event
+book event
+create event
+edit events
+dashboard for count
+subscription
+email alert
 
-### Description
-Small web application for searching events and booking upcoming events. The user can filter events by Category, Sub-Category and Date that the event will be taking place. The user can also create a profile where he/she can view/edit his/hers information and the events currently booked. Lastly, a priviledged user can add and modify events, categories, sub-categorie and locations.
+
+#description
+The Educational Event Booking System is designed to simplify the process of booking educational events such as seminars, workshops, and conferences. The system provides an online platform for users to browse and select the events they are interested in attending, register for the event, and make subscription based events if user is subscribed user can allow to book paid events
