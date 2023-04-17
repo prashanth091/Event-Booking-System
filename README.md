@@ -1,4 +1,5 @@
-Educational Event Bookings web application such as workshop,conference,seminar,expo 
+Educational Event Bookings web application
+educational events like workshops,conference,seminar..
 ## Programming Languages Used
 
 - Python
