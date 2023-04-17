@@ -1,21 +1,20 @@
 Educational Event Bookings web application such as workshop,conference,seminar,expo 
+## Programming Languages Used
 
-#technologies used
-Django
-python
-html
-css
-javascript
-sqlite3
+- Python
+- JavaScript
+- HTML
+- CSS
+
 
 #modules
-search event
-book event
-create event
-edit events
-dashboard for count
-subscription
-email alert
+- search event
+- book event
+- create event
+- edit events
+- dashboard for count
+- subscription
+- email alert
 
 
 Looking for a hassle-free solution to manage your educational events? Our event booking system using Django is the perfect solution for you! With our intuitive and user-friendly platform, you can search, book, and create subscription-based events with ease. Our system is designed to streamline the event booking process, allowing you to manage all aspects of your events in one place.
